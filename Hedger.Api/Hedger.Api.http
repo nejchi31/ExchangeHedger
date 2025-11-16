@@ -1,0 +1,6 @@
+@Hedger.Api_HostAddress = http://localhost:5156
+
+GET {{Hedger.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
