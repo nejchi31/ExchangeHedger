@@ -6,26 +6,26 @@ WORKDIR /src
 COPY MetaExchange.sln ./
 COPY Hedger.Core/Hedger.Core.csproj Hedger.Core/
 COPY Hedger.Common/Hedger.Common.csproj Hedger.Common/
-COPY Hedger.Api/Hedger.Api.csproj Hedger.Api/
+COPY Hedger.Console/Hedger.Console.csproj Hedger.Console/
 
-# Restore only for the API project (pulls deps for Core/Common too)
-RUN dotnet restore Hedger.Api/Hedger.Api.csproj
+# Restore only for the console project (brings in Core/Common too)
+RUN dotnet restore Hedger.Console/Hedger.Console.csproj
 
 # Copy the rest of the source
 COPY Hedger.Core Hedger.Core/
 COPY Hedger.Common Hedger.Common/
-COPY Hedger.Api Hedger.Api/
+COPY Hedger.Console Hedger.Console/
 
-# Publish API
-WORKDIR /src/Hedger.Api
+# Publish console app
+WORKDIR /src/Hedger.Console
 RUN dotnet publish -c Release -o /app/publish
 
 # ---------- RUNTIME STAGE ----------
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
+FROM mcr.microsoft.com/dotnet/runtime:9.0 AS runtime
 WORKDIR /app
 
-# Copy published output from build stage
+# Copy published output
 COPY --from=build /app/publish ./
 
-EXPOSE 8080
-ENTRYPOINT ["dotnet", "Hedger.Api.dll"]
+# Run console app
+ENTRYPOINT ["dotnet", "Hedger.Console.dll"]
