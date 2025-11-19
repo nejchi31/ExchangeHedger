@@ -32,20 +32,16 @@ namespace Hedger.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            // 1) Parse order type
-            OrderTypeEnum orderType;
-            try
+            if (!ModelState.IsValid)
             {
-                orderType = request.OrderType.MapToDomainOrderType();
+                throw new ArgumentException("Request model is invalid.");
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
+
+            var orderType = request.OrderType.MapToDomainOrderType();
 
             if (request.AmountBtc <= 0)
             {
-                return BadRequest(new { error = "AmountBtc must be positive." });
+                throw new ArgumentException("AmountBtc must be positive.", nameof(request.AmountBtc));
             }
 
             // 2) Build exchange config (for now hardcoded; could be moved to config later)
@@ -61,12 +57,18 @@ namespace Hedger.Api.Controllers
             // 3) Load exchanges based on config
             var exchanges = _exchangeRepository.GetExchanges(config);
 
-            // 4) Execute meta order
+            // 4) Execute order
             var result = await _metaExchangeService.ExecuteMetaOrder(exchanges, orderType, request.AmountBtc);
 
             // 5) Map to DTO and return
             var response = result.MapToDTO();
             return Ok(response);
+        }
+
+        [HttpPost("test-exception")]
+        public IActionResult TestException()
+        {
+            throw new InvalidOperationException("This is a test error - testing exception middleware");
         }
     }
 }

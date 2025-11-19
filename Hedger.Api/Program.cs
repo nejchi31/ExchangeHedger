@@ -1,3 +1,4 @@
+using Hedger.Api.Middleware;
 using Hedger.Core.Interfaces;
 using Hedger.Core.Repositories.Interfaces;
 using Hedger.Core.Repositories.RepositoryImpl;
@@ -38,6 +39,8 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
