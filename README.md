@@ -298,7 +298,7 @@ Build & run from solution root:
 # build
 docker build -t hedger-api -f Hedger.Api/Dockerfile .
 
-# run (Development environment to enable Swagger)
+# run
 docker run --name hedger-api -d -p 8080:8080 hedger-api
 ```
 
@@ -362,4 +362,5 @@ dotnet test
 ```
 
 ---
+
 
