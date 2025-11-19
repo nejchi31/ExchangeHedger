@@ -44,12 +44,19 @@ namespace Hedger.Tests
       ]
 }";
 
-                // File format: timestamp \t JSON
+                // File format: timestamp \t JSON (single-line JSON)
+                var line1 = "1\t" + snapshot1Json.Trim().Replace("\r", "").Replace("\n", "");
+                var line2 = "2\t" + snapshot2Json.Trim().Replace("\r", "").Replace("\n", "");
+
                 File.WriteAllLines(tempFile, new[]
                 {
-                    $"1\t{snapshot1Json.Replace(Environment.NewLine, string.Empty)}",
-                    $"2\t{snapshot2Json.Replace(Environment.NewLine, string.Empty)}"
+                    line1,
+                    line2
                 });
+
+                // Optional sanity check for debugging:
+                var lines = File.ReadAllLines(tempFile);
+                Assert.Equal(2, lines.Length);          
 
                 // Config: generate 2 exchanges from the file, with enough EUR/BTC balances
                 var config = new ExchangeConfigModel
