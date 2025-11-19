@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Hedger.Core.csproj" />
+    <ProjectReference Include="..\Hedger.Core\Hedger.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
