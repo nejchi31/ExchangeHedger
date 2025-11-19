@@ -10,7 +10,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        var filePath = @"C:\Users\nejc.necemer\OneDrive - L-TEK d.o.o\Dokumenti\StuttgartBoerse\order_books_data"; 
+        var filePath = @"order_books_data"; 
 
         // 1) Ask user for exchange config
         var config = ReadExchangeConfigFromConsole();

@@ -2,8 +2,6 @@ using Hedger.Core.Interfaces;
 using Hedger.Core.Repositories.Interfaces;
 using Hedger.Core.Repositories.RepositoryImpl;
 using Hedger.Core.Services;
-using Microsoft.OpenApi;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +25,7 @@ builder.Services.AddSingleton<IExchangeRepository>(sp =>
 {
     var env = sp.GetRequiredService<IWebHostEnvironment>();
 
-    var filePath = Path.Combine(env.ContentRootPath, "Data", @"C:\Users\nejc.necemer\OneDrive - L-TEK d.o.o\Dokumenti\StuttgartBoerse\order_books_data");
+    var filePath = Path.Combine(env.ContentRootPath, @"order_books_data");
     // make sure this file exists and is set to "Copy to Output Directory"
 
     return new ExchangeRepository(filePath);

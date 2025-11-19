@@ -14,4 +14,10 @@
     <Folder Include="Repositories\Helper\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="order_books_data">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
