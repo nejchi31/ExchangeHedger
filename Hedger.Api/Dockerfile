@@ -12,7 +12,6 @@ RUN dotnet restore Hedger.Api/Hedger.Api.csproj
 
 # Copy the rest of the source
 COPY Hedger.Core Hedger.Core/
-COPY Hedger.Common Hedger.Common/
 COPY Hedger.Api Hedger.Api/
 
 # Publish API

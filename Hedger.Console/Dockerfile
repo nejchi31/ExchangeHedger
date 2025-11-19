@@ -11,7 +11,6 @@ RUN dotnet restore Hedger.Console/Hedger.Console.csproj
 
 # Copy the rest of the source
 COPY Hedger.Core Hedger.Core/
-COPY Hedger.Common Hedger.Common/
 COPY Hedger.Console Hedger.Console/
 
 # Publish console app
