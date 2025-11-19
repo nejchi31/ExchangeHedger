@@ -70,7 +70,7 @@ namespace Hedger.Tests
                 // Sanity: we should have 2 exchanges
                 Assert.Equal(2, exchanges.Count);
 
-                var result = await service.ExecuteMetaOrder(exchanges, OrderTypeEnum.Buy,1.5m);
+                var result = await service.ExecuteOrder(exchanges, OrderTypeEnum.Buy,1.5m);
 
                 // Assert
                 Assert.True(result.FullyFilled);

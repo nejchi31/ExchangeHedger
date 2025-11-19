@@ -5,6 +5,6 @@ namespace Hedger.Core.Interfaces
 {
     public interface IExchangeService
     {
-        Task<ExchangeResult> ExecuteMetaOrder(List<ExchangeState> exchanges, OrderTypeEnum orderType,decimal targetBtc);
+        Task<ExchangeResult> ExecuteOrder(List<ExchangeState> exchanges, OrderTypeEnum orderType,decimal targetBtc);
     }
 }

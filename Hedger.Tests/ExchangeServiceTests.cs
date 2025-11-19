@@ -47,7 +47,7 @@ namespace Hedger.Tests
             var targetBtc = 2m;
 
             // Act
-            var result = await _service.ExecuteMetaOrder(exchanges, OrderTypeEnum.Buy, targetBtc);
+            var result = await _service.ExecuteOrder(exchanges, OrderTypeEnum.Buy, targetBtc);
 
             // Assert
             Assert.True(result.FullyFilled);
@@ -97,7 +97,7 @@ namespace Hedger.Tests
             var targetBtc = 1m;
 
             // Act
-            var result = await _service.ExecuteMetaOrder(exchanges, OrderTypeEnum.Buy, targetBtc);
+            var result = await _service.ExecuteOrder(exchanges, OrderTypeEnum.Buy, targetBtc);
 
             // Assert
             Assert.False(result.FullyFilled);      // cannot reach 1 BTC
@@ -150,7 +150,7 @@ namespace Hedger.Tests
             var targetBtc = 1m;
 
             // Act
-            var result = await _service.ExecuteMetaOrder(exchanges, OrderTypeEnum.Sell, targetBtc);
+            var result = await _service.ExecuteOrder(exchanges, OrderTypeEnum.Sell, targetBtc);
 
             // Assert
             Assert.True(result.FullyFilled);
@@ -191,7 +191,7 @@ namespace Hedger.Tests
                 }
             };
 
-            var result = await _service.ExecuteMetaOrder(exchanges, OrderTypeEnum.Buy, 1m);
+            var result = await _service.ExecuteOrder(exchanges, OrderTypeEnum.Buy, 1m);
 
             Assert.False(result.FullyFilled);
             Assert.Equal(0m, result.TotalBtc);
@@ -216,7 +216,7 @@ namespace Hedger.Tests
                 }
             };
 
-            var result = await _service.ExecuteMetaOrder(exchanges, OrderTypeEnum.Sell, 1m);
+            var result = await _service.ExecuteOrder(exchanges, OrderTypeEnum.Sell, 1m);
 
             Assert.False(result.FullyFilled);
             Assert.Equal(0m, result.TotalBtc);
@@ -229,7 +229,7 @@ namespace Hedger.Tests
             var exchanges = new List<ExchangeState>(); // doesn't matter
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
-                _service.ExecuteMetaOrder(exchanges, OrderTypeEnum.Buy, 0m));
+                _service.ExecuteOrder(exchanges, OrderTypeEnum.Buy, 0m));
         }
     }
 }

@@ -37,7 +37,7 @@ class Program
         PrintTopOfBookPerExchange(exchanges, orderType, topN: 10);
 
         // 5) Execute meta-order across all exchanges
-        var result = await service.ExecuteMetaOrder(exchanges, orderType, amountBtc);
+        var result = await service.ExecuteOrder(exchanges, orderType, amountBtc);
 
         // 6) Print result
         PrintMetaExchangeResult(result);

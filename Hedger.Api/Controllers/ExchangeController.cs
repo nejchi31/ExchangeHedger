@@ -26,7 +26,7 @@ namespace Hedger.Api.Controllers
         /// <summary>
         /// Returns the best execution plan for a buy/sell BTC order.
         /// </summary>
-        [HttpPost]
+        [HttpPost("execute-order-plan")]
         public async Task<ActionResult<ExecutionResponseDTO>> Post([FromBody] ExecutionRequestDto request)
         {
             if (!ModelState.IsValid)
@@ -58,7 +58,7 @@ namespace Hedger.Api.Controllers
             var exchanges = _exchangeRepository.GetExchanges(config);
 
             // 4) Execute order
-            var result = await _metaExchangeService.ExecuteMetaOrder(exchanges, orderType, request.AmountBtc);
+            var result = await _metaExchangeService.ExecuteOrder(exchanges, orderType, request.AmountBtc);
 
             // 5) Map to DTO and return
             var response = result.MapToDTO();

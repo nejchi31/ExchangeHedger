@@ -7,7 +7,7 @@ namespace Hedger.Core.Services
 {
     public class ExchangeService : IExchangeService
     {
-        public async Task<ExchangeResult> ExecuteMetaOrder(List<ExchangeState> exchanges, OrderTypeEnum orderType, decimal targetBtc)
+        public async Task<ExchangeResult> ExecuteOrder(List<ExchangeState> exchanges, OrderTypeEnum orderType, decimal targetBtc)
         {
             if (exchanges == null) throw new ArgumentNullException(nameof(exchanges));
             if (targetBtc <= 0) throw new ArgumentOutOfRangeException(nameof(targetBtc), "Target BTC must be positive.");
