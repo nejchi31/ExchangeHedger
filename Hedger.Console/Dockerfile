@@ -5,10 +5,8 @@ WORKDIR /src
 # Copy solution and project files
 COPY MetaExchange.sln ./
 COPY Hedger.Core/Hedger.Core.csproj Hedger.Core/
-COPY Hedger.Common/Hedger.Common.csproj Hedger.Common/
 COPY Hedger.Console/Hedger.Console.csproj Hedger.Console/
 
-# Restore only for the console project (brings in Core/Common too)
 RUN dotnet restore Hedger.Console/Hedger.Console.csproj
 
 # Copy the rest of the source
