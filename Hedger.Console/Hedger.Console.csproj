@@ -8,8 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Hedger.Core.csproj" />
-    <ProjectReference Include="..\Hedger.Core\dsads.csproj" />
     <ProjectReference Include="..\Hedger.Core\Hedger.Core.csproj" />
   </ItemGroup>
 
