@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
 # Copy solution and project files
-COPY MetaExchange.sln ./
+COPY HedgerExchange.sln ./
 COPY Hedger.Core/Hedger.Core.csproj Hedger.Core/
 COPY Hedger.Api/Hedger.Api.csproj Hedger.Api/
 
