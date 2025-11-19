@@ -7,15 +7,18 @@ namespace Hedger.Core.Services
 {
     public class ExchangeService : IExchangeService
     {
-        public async Task<ExchangeResult> ExecuteOrder(List<ExchangeState> exchanges, OrderTypeEnum orderType, decimal targetBtc)
+        public Task<ExchangeResult> ExecuteOrder(List<ExchangeState> exchanges, OrderTypeEnum orderType, decimal targetBtc)
         {
             if (exchanges == null) throw new ArgumentNullException(nameof(exchanges));
             if (targetBtc <= 0) throw new ArgumentOutOfRangeException(nameof(targetBtc), "Target BTC must be positive.");
 
-            return orderType == OrderTypeEnum.Buy
+            var result = orderType == OrderTypeEnum.Buy
                 ? ExecuteBuy(exchanges, targetBtc)
                 : ExecuteSell(exchanges, targetBtc);
+
+            return Task.FromResult(result);
         }
+
 
         #region BUY SIDE
 
